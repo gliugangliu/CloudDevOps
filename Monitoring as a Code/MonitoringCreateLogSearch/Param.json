@@ -1,0 +1,23 @@
+{
+  "LARG": "HGZL-RG",
+  "LAName": "HGZL-LAW",
+  "RuleName": "LogSearchTestRule01",
+  "Description": "TestPurpose", 
+  "Query":'Perf
+  | where ObjectName contains "logicaldisk"
+  | where CounterName contains "% Free Space"
+  | where InstanceName != "_Total"
+  | where InstanceName != "D:"
+  | where InstanceName != "T:"
+  | where InstanceName !contains "HarddiskVolume"
+  | where CounterValue < 10
+  | distinct TimeGenerated, Computer, ObjectName, CounterName, InstanceName, CounterValue
+  | sort by TimeGenerated desc',
+  "Frequency": "5", // only accept value 5,10,15,30,45,60,120,180,240,300,360,1440
+  "Preiod": "5", // only accept value 5,10,15,30,45,60,120,180,240,300,360,1440,2880
+  "Threshold": "1",
+  "Operator": "Greaterthanorequal", // only accept value Greaterthan,Greaterthanorequal,Equal,Lessthanorequal,Lessthan
+  "ActionGroup": "HGZL",
+  "EmailSubject": "Low VM Disk free space less than 10% - High Alarm",
+  "Severity": "0"
+}

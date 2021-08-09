@@ -1,0 +1,17 @@
+{
+    "AlertRuleRG": "HGZL-RG",
+    "AlertRuleName": "HGZL-Test-MetricAlert",
+    "AlertRuleDescription": "NovoCare Prod VM CPU Utilization exceed 90",
+    "AlertRuleSeverity": "1",  // only accept value 0,1,2,3,4
+    "ActionGroupName": "HGZL",
+    "MonitorScopeLARG": "HGZL-RG", 
+    "MonitorScopeLAName": "hgzl-law",
+    "DimensionName" : "Computer,ObjectName", 
+    "DimensionValue": "*,Processor",
+    "Signal": "Average_% Processor Time", 
+    "TimeAggregation": "Minimum", // only accept value "Average","Maximum","Minimum","Total","Count"
+    "Operator": "GreaterThan", // only accept value  "GreaterThan","GreaterThanorEqual","Equal","LessThanorEqual","LessThan"
+    "Threshold": "90",
+    "AggregationGranularityMins" : "60", // only accept value 1,5,15,30,60,360,720,1440
+    "FrequencyMins" : "5" // only accept value 1,5,15,30,60
+}
